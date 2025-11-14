@@ -11,6 +11,7 @@
     ---primary:slateblue;
     --orange:orange;
     --red:red;
+    --green:green;
 }
 html{
     scroll-behavior: smooth;
@@ -102,3 +103,30 @@ body{
 }
 .info{background-color: var(--teal);}
 .danger{background-color: var(--red);}
+.success{background-color: var(--green);}
+/* form */
+.row{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.row .card{
+    width: 50vw;
+}
+.row .form-item{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-top: 1rem;
+
+
+}
+.form-item .form-control{
+    width: 100%;
+    outline: none;
+    border:1px solid var(--dark);
+    border-radius: 6px;
+    padding: 4px 6px;
+}
