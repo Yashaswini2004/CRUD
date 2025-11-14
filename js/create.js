@@ -5,6 +5,7 @@ let userForm=document.getElementById("userForm");
 let errName=document.getElementById("nameErr");
 let errEmail=document.getElementById("emailErr");
 let errMobile=document.getElementById("mobileErr");
+const url="https://node-crud-api-0n4d.onrender.com";
 // submit event listener
 userForm.addEventListener("submit",async(e)=>{
     e.preventDefault();
@@ -16,6 +17,17 @@ userForm.addEventListener("submit",async(e)=>{
     if(validate(user))
     {
         console.log(`new user=`,user);
+        await fetch(`${url}/api/user`,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(user)
+        }).then(out=>out.json())
+        .then(res=>{
+            alert(res?.msg);
+            window.location.href="/";
+        }).catch(err=>console.log(err?.response?.msg));
     }
     else{
         console.log(`error in the form inputs`);
@@ -32,7 +44,7 @@ function validate(user){
         isValid=false;
        
     }
-    else if(!/^[a-zA-A]{2,20}$/.test(user?.name))
+    else if(!/^[a-zA-Z ]+$/.test(user?.name))
     {
         errName.innerText="Invalid name format";
         errName.style.color="red";

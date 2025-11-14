@@ -19,6 +19,23 @@ async function readUser(){
 }
 readUser();
 
+// delete user
+async function deleteUser(id){
+   if(window.confirm(`Are you sure to delete user?`)){
+     await fetch(`${url}/api/user/delete/${id}`,{
+      method:"DELETE",
+      headers:{
+        "Content-Type":"application/json"
+      }
+     }).then(out=>out.json())
+     .then(res=>{
+       alert(res?.msg);
+       window.location.reload();
+     })
+     .catch(err=>console.err(err?.response?.msg));
+   }
+}
+
 // print the user data
 function printUser(data){
     data.forEach(item => {
@@ -38,7 +55,7 @@ function printUser(data){
          </div>
          <div class="card-footer">
            <a href="update.html?userId=${item?._id}" class="btn info">Edit</a>
-           <button class="btn danger">Delete</button>
+           <button onclick="deleteUser('${item?._id}')" class="btn danger">Delete</button>
          </div>
         </div>`;
     });
