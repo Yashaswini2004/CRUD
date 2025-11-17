@@ -17,7 +17,7 @@ userForm.addEventListener("submit",async(e)=>{
     if(validate(user))
     {
         console.log(`new user=`,user);
-        await fetch(`${url}/api/user`,{
+        await fetch(`${url}/api/user/add`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
